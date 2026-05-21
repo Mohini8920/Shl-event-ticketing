@@ -1,0 +1,201 @@
+/* ============================================
+   SHL TICKET BOOKING FLOW STYLES
+   ============================================ */
+
+.booking-page {
+  padding-top: calc(var(--navbar-height) + var(--space-8));
+  padding-bottom: var(--space-20);
+  min-height: 100vh;
+}
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.booking-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+}
+
+/* ---- Step Indicators ---- */
+.step-progress-wrapper {
+  margin-bottom: var(--space-10);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* ---- Ticket Options Grid ---- */
+.ticket-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.ticket-select-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+}
+
+.ticket-select-card:hover {
+  border-color: var(--primary-light);
+}
+
+.ticket-select-card.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.ticket-select-info {
+  max-width: 60%;
+}
+
+.ticket-select-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.ticket-select-price {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.ticket-select-features {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-top: var(--space-2);
+}
+
+/* ---- Add-ons Grid ---- */
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.addon-card {
+  display: flex;
+  gap: var(--space-4);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.addon-card:hover {
+  border-color: var(--primary-light);
+}
+
+.addon-card.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.addon-icon-box {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.addon-info h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.addon-price {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: var(--text-sm);
+}
+
+/* ---- Order Summary Panel ---- */
+.order-summary-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-4));
+}
+
+.order-summary-card h2 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+  color: var(--text-secondary);
+}
+
+.summary-row.total {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--text-primary);
+  border-top: 1px dashed var(--border-medium);
+  padding-top: var(--space-4);
+  margin-top: var(--space-4);
+  margin-bottom: 0;
+}
+
+.summary-ticket-badge {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+/* ---- Navigation buttons ---- */
+.booking-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-light);
+}
+
+@media (max-width: 1024px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ticket-select-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .addons-grid {
+    grid-template-columns: 1fr;
+  }
+}

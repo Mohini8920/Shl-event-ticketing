@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Ticket — SHL Ticketing System</title>
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/ticket.css">
+</head>
+<body>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon">SHL</div>
+        <span>Social House Learning</span>
+      </a>
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="dashboard.html" class="navbar-link">Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======== MAIN STANDALONE TICKET ======== -->
+  <main class="container ticket-page">
+    <div class="ticket-container-standalone reveal animate-scale-in">
+      <!-- HEADER -->
+      <header class="ticket-header-box">
+        <div style="font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; margin-bottom: var(--space-1);">Entry Pass</div>
+        <h1 id="ticketEventName" style="font-size: var(--text-xl); font-weight: 800;">Model United Nations Conference</h1>
+        <p id="ticketEventDate" style="font-size: var(--text-xs); opacity: 0.9; margin-top: 4px;">Date details</p>
+      </header>
+
+      <!-- BODY -->
+      <div class="ticket-body-box">
+        <!-- QR Code -->
+        <div class="ticket-qr-frame">
+          <img src="" alt="Ticket QR" class="ticket-qr-img" id="ticketQrImage">
+        </div>
+
+        <div style="text-align: center;">
+          <h2 id="ticketCode" style="font-size: var(--text-lg); font-weight: 800; font-family: var(--font-mono); margin-bottom: 2px;">TKT-CODE</h2>
+          <span class="badge badge-success" id="ticketStatusBadge">Confirmed</span>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="ticket-info-grid">
+          <div class="ticket-info-item">
+            <span class="ticket-info-label">Delegate</span>
+            <span class="ticket-info-value" id="ticketAttendee">Aarav Patel</span>
+          </div>
+          <div class="ticket-info-item">
+            <span class="ticket-info-label">Pass Category</span>
+            <span class="ticket-info-value" id="ticketTier">VIP Pass</span>
+          </div>
+          <div class="ticket-info-item">
+            <span class="ticket-info-label">Venue</span>
+            <span class="ticket-info-value" id="ticketVenue">New Delhi Venue</span>
+          </div>
+          <div class="ticket-info-item">
+            <span class="ticket-info-label">Allocation</span>
+            <span class="ticket-info-value" id="ticketAllocation">UNSC — India</span>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="ticket-footer-actions">
+          <button class="btn btn-primary" style="flex: 1;" onclick="window.print()">🖨️ Print Ticket</button>
+          <button class="btn btn-outline" style="flex: 1;" onclick="Toast.show('Wallet Added', 'Apple/Google wallet file created successfully.', 'success')">📱 Add to Wallet</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/qr.js"></script>
+</body>
+</html>

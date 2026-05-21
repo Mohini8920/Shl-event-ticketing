@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — SHL Ticketing System</title>
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <main class="auth-page-layout">
+    <!-- FORM SIDE -->
+    <section class="auth-form-side">
+      <div class="auth-form-card reveal">
+        <!-- Logo -->
+        <a href="index.html" class="auth-brand-logo">
+          <div class="logo-icon" style="width: 32px; height: 32px; font-size: 11px;">SHL</div>
+          <span>Social House Learning</span>
+        </a>
+
+        <!-- Header -->
+        <div class="auth-header">
+          <h1>Welcome Back</h1>
+          <p>Sign in to view credentials, QR tickets, and check committee allocations.</p>
+        </div>
+
+        <!-- Social Logins -->
+        <div class="auth-social-btns">
+          <button class="auth-social-btn" onclick="Toast.show('Social Login', 'Google signin simulation successful.', 'success')">
+            <span>🌐</span> Google
+          </button>
+          <button class="auth-social-btn" onclick="Toast.show('Social Login', 'LinkedIn signin simulation successful.', 'success')">
+            <span>💼</span> LinkedIn
+          </button>
+        </div>
+
+        <div class="divider" style="margin-bottom: var(--space-6);">or sign in with email</div>
+
+        <!-- Forms -->
+        <form id="loginForm" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" class="form-input" id="logEmail" placeholder="name@email.com" required value="aarav.patel@gmail.com">
+            <span class="form-error" style="display: none;">Valid email is required</span>
+          </div>
+
+          <div class="form-group">
+            <div class="flex justify-between items-center">
+              <label class="form-label">Password <span class="required">*</span></label>
+              <a href="#" style="font-size: var(--text-xs); color: var(--primary); font-weight: 600;" onclick="Toast.show('Reset Link Sent', 'Simulated password reset instructions emailed.', 'info')">Forgot Password?</a>
+            </div>
+            <input type="password" class="form-input" id="logPassword" placeholder="Enter your password" required value="password123">
+            <span class="form-error" style="display: none;">Password is required</span>
+          </div>
+
+          <!-- Sandbox Accounts (Quick Login) -->
+          <div class="flex flex-col gap-2" style="background: var(--bg-secondary); padding: var(--space-3); border-radius: var(--radius-md); margin-bottom: var(--space-4);">
+            <span style="font-size: var(--text-xs); font-weight: 700; color: var(--text-tertiary);">SANDBOX QUICK LOGINS:</span>
+            <div class="flex gap-2">
+              <button type="button" class="btn btn-secondary btn-sm" id="quickLoginDelegateBtn" style="flex: 1; font-size: 10px; padding: 6px;">As Delegate</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="quickLoginAdminBtn" style="flex: 1; font-size: 10px; padding: 6px;">As Admin/Org</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;" id="loginSubmitBtn">Log In</button>
+        </form>
+
+        <p style="font-size: var(--text-sm); text-align: center; color: var(--text-secondary); margin-top: var(--space-6);">
+          Don't have an account? <a href="register.html" style="color: var(--primary); font-weight: 600;">Sign Up</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- VISUAL SIDE -->
+    <section class="auth-visual-side">
+      <div>
+        <h2 style="font-size: var(--text-3xl); font-weight: 800; line-height: 1.2;">Elevating youth education through immersive simulations.</h2>
+      </div>
+
+      <!-- Quote -->
+      <div class="auth-quote-card">
+        <p style="font-size: var(--text-sm); line-height: 1.6; font-style: italic; margin-bottom: var(--space-3);">
+          "Organizing the New Delhi Global Youth Summit with SHL was a masterclass in management. The dashboard systems kept everything integrated."
+        </p>
+        <div style="font-weight: 700; font-size: var(--text-xs);">— Riya Chatterjee, Executive Board 2026</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

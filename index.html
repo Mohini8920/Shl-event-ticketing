@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHL — Social House Learning | Summits · MUN · Youth Events</title>
+  <meta name="description" content="Join the GenZ Learning Revolution. Register for global youth summits, Model United Nations conferences, and leadership programs by Social House Learning.">
+  <meta name="keywords" content="SHL, Social House Learning, MUN, Youth Summit, New Delhi, Dubai, Conference, Ticketing">
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon">SHL</div>
+        <span>Social House Learning</span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link active">Home</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="committee.html" class="navbar-link">MUN</a>
+        <a href="dashboard.html" class="navbar-link">Dashboard</a>
+        <a href="#contact" class="navbar-link">Contact</a>
+      </div>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <a href="login.html" class="btn btn-ghost btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">🏠 Home</a>
+    <a href="events.html">📅 Events</a>
+    <a href="committee.html">🌍 MUN Committees</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="#contact">📞 Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+      <a href="login.html" class="btn btn-secondary" style="text-align: center;">Log In</a>
+      <a href="register.html" class="btn btn-primary" style="text-align: center;">Register Now</a>
+    </div>
+  </div>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-particles">
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+    </div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        Registrations Open for 2026 Events
+      </div>
+      <h1>
+        Shaping <span class="gradient-text">Future Leaders</span><br>One Summit at a Time
+      </h1>
+      <p class="hero-subtitle">
+        Join India's fastest-growing youth platform. Participate in global summits, 
+        MUN conferences, and leadership programs across New Delhi, Dubai, Singapore & more.
+      </p>
+      <div class="hero-ctas">
+        <a href="events.html" class="btn btn-primary btn-lg">
+          🎪 Explore Events
+        </a>
+        <a href="register.html" class="btn btn-outline btn-lg">
+          Register Now →
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-mouse"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- ======== STATS BAR ======== -->
+  <section class="stats-bar reveal">
+    <div class="container">
+      <div class="stat-block reveal-child">
+        <div class="stat-number"><span data-count="50">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-text">Events Organized</div>
+      </div>
+      <div class="stat-block reveal-child">
+        <div class="stat-number"><span data-count="10000">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-text">Delegates Trained</div>
+      </div>
+      <div class="stat-block reveal-child">
+        <div class="stat-number"><span data-count="15">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-text">Cities Worldwide</div>
+      </div>
+      <div class="stat-block reveal-child">
+        <div class="stat-number"><span data-count="100">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-text">Committees Simulated</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FEATURED EVENTS ======== -->
+  <section class="section featured-events" id="events">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Featured Events</span>
+        <h2>Upcoming Experiences</h2>
+        <p>Discover our flagship summits and conferences designed to transform young minds into future leaders.</p>
+      </div>
+
+      <div class="grid grid-3 gap-8 reveal" id="featuredEventsGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="text-center" style="margin-top: var(--space-10);">
+        <a href="events.html" class="btn btn-outline btn-lg">View All Events →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== HOW IT WORKS ======== -->
+  <section class="section how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">How It Works</span>
+        <h2>Your Journey in 4 Steps</h2>
+        <p>From discovery to attendance — our streamlined process makes participating effortless.</p>
+      </div>
+
+      <div class="steps-grid reveal">
+        <div class="step-card reveal-child">
+          <div class="step-icon">🔍</div>
+          <div class="step-number">Step 01</div>
+          <h4>Browse Events</h4>
+          <p>Explore our curated list of summits, MUNs, and workshops across multiple cities.</p>
+        </div>
+        <div class="step-card reveal-child">
+          <div class="step-icon">🎫</div>
+          <div class="step-number">Step 02</div>
+          <h4>Book Tickets</h4>
+          <p>Choose your ticket tier, fill in delegate details, and complete secure checkout.</p>
+        </div>
+        <div class="step-card reveal-child">
+          <div class="step-icon">📋</div>
+          <div class="step-number">Step 03</div>
+          <h4>Get Confirmed</h4>
+          <p>Receive your QR-coded ticket via email. Select committees and portfolios for MUNs.</p>
+        </div>
+        <div class="step-card reveal-child">
+          <div class="step-icon">🏆</div>
+          <div class="step-number">Step 04</div>
+          <h4>Attend & Shine</h4>
+          <p>Check in with your QR code, participate in sessions, network, and earn certificates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== TESTIMONIALS ======== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Testimonials</span>
+        <h2>What Delegates Say</h2>
+        <p>Hear from thousands of delegates who have transformed their lives through SHL programs.</p>
+      </div>
+
+      <div class="testimonial-carousel reveal" id="testimonialCarousel">
+        <div class="testimonial-track" id="testimonialTrack">
+          <!-- Populated by JS -->
+        </div>
+        <div class="testimonial-dots" id="testimonialDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SPONSORS ======== -->
+  <section class="section-sm sponsors">
+    <div class="container">
+      <div class="section-header reveal" style="margin-bottom: var(--space-8);">
+        <span class="section-tag">Our Partners</span>
+        <h2>Trusted By Leading Organizations</h2>
+      </div>
+      <div style="overflow: hidden;" class="reveal">
+        <div class="sponsor-ticker" id="sponsorTicker">
+          <!-- Populated by JS (doubled for infinite scroll) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== NEWSLETTER ======== -->
+  <section class="section newsletter">
+    <div class="container">
+      <div class="newsletter-card reveal">
+        <h2>Stay Ahead of the Curve</h2>
+        <p>Get early access to event registrations, exclusive discounts, and SHL updates.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); Toast.show('Subscribed!', 'You\'ll receive our next update soon.', 'success');">
+          <input type="email" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn-primary btn-lg">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FAQ ======== -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about SHL events and registration.</p>
+      </div>
+
+      <div class="faq-grid reveal" id="faqContainer">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo" style="margin-bottom: var(--space-4);">
+            <div class="logo-icon">SHL</div>
+            <span>Social House Learning</span>
+          </a>
+          <p>Introducing the GenZ's Learning Revolution. Empowering students through MUN conferences, youth summits, and leadership programs since 2021.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/socialhouselearning/" class="footer-social" target="_blank" aria-label="Instagram">📸</a>
+            <a href="https://in.linkedin.com/company/social-house-learning" class="footer-social" target="_blank" aria-label="LinkedIn">💼</a>
+            <a href="#" class="footer-social" aria-label="Twitter">🐦</a>
+            <a href="#" class="footer-social" aria-label="YouTube">📺</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <a href="events.html">Upcoming Events</a>
+          <a href="committee.html">MUN Committees</a>
+          <a href="register.html">Register</a>
+          <a href="dashboard.html">My Dashboard</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Programs</h4>
+          <a href="#">Youth Summits</a>
+          <a href="#">Model UN</a>
+          <a href="#">Baithak Workshops</a>
+          <a href="#">Leadership Bootcamp</a>
+          <a href="#">Disha AI</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <a href="tel:+918882783164">📞 +91 88827 83164</a>
+          <a href="tel:+60115161270">📞 +60 11-5161 2770</a>
+          <a href="mailto:info.socialhouselearning@gmail.com">📧 info.socialhouselearning@gmail.com</a>
+          <a href="https://maps.app.goo.gl/v8Bp4Wmm3XSY516e6" target="_blank">📍 New Ashok Nagar, New Delhi</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>©2021 – 2026 Social House Learning & SMHM Services LLP. All Rights Reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="https://www.socialhouselearning.com/privacy-policy" target="_blank">Privacy Policy</a>
+          <a href="https://www.socialhouselearning.com/refund-policy" target="_blank">Refund Policy</a>
+          <a href="https://www.socialhouselearning.com/terms-of-use" target="_blank">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>

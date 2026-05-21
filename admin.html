@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — SHL Ticketing System</title>
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="C:\Users\mohini\Pictures\Screenshots\Screenshot 2026-05-21 142047.png">
+        <span>SHL Control Panel</span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="dashboard.html" class="navbar-link">User view</a>
+      </div>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <button class="btn btn-secondary btn-sm" id="adminLogoutBtn">Log Out</button>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ======== ADMIN DASHBOARD LAYOUT ======== -->
+  <div class="admin-layout" style="margin-top: var(--navbar-height);">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div
+        style="font-size: var(--text-xs); font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; padding-left: var(--space-4);">
+        Organizer Access</div>
+
+      <nav style="display: flex; flex-direction: column; gap: 4px;">
+        <button class="sidebar-link active" data-admin-tab="analytics">
+          <span class="link-icon">📈</span> Analytics
+        </button>
+        <button class="sidebar-link" data-admin-tab="events">
+          <span class="link-icon">📅</span> Events Admin
+        </button>
+        <button class="sidebar-link" data-admin-tab="approvals">
+          <span class="link-icon">👤</span> Approvals
+          <span class="badge badge-danger" id="badgePendingApprovals" style="margin-left: auto;">5</span>
+        </button>
+        <button class="sidebar-link" data-admin-tab="committees">
+          <span class="link-icon">⚖️</span> Committees
+        </button>
+        <button class="sidebar-link" data-admin-tab="transactions">
+          <span class="link-icon">💳</span> Transactions
+        </button>
+        <button class="sidebar-link" data-admin-tab="scanner">
+          <span class="link-icon">📷</span> Scan Entry
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN PANEL -->
+    <main class="admin-main">
+
+      <!-- ANALYTICS TAB -->
+      <div class="tab-content active" data-tab-content="analytics">
+        <div class="dashboard-header">
+          <div>
+            <h1>System Analytics Overview</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Real-time monitoring of ticket sales,
+              revenue trends, and delegate activities.</p>
+          </div>
+          <button class="btn btn-primary"
+            onclick="Toast.show('Export Summary', 'System analytics report PDF download started.', 'success')">📤 Export
+            Report</button>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-4 gap-6" style="margin-bottom: var(--space-8);">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">🎫</div>
+            <div class="stat-value" id="metricTotalTickets">3,847</div>
+            <div class="stat-label">Tickets Sold</div>
+            <span class="stat-change up">▲ 18.5% <span
+                style="color: var(--text-tertiary); font-weight: normal; margin-left: 2px;">this month</span></span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--success-light); color: var(--success);">💸</div>
+            <div class="stat-value" id="metricTotalRevenue">₹11.5M</div>
+            <div class="stat-label">Total Revenue</div>
+            <span class="stat-change up">▲ 24.3% <span
+                style="color: var(--text-tertiary); font-weight: normal; margin-left: 2px;">this month</span></span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--danger-light); color: var(--danger);">⏳</div>
+            <div class="stat-value" id="metricPendingApprovals">23</div>
+            <div class="stat-label">Pending Approvals</div>
+            <span class="stat-change down">▼ -12% <span
+                style="color: var(--text-tertiary); font-weight: normal; margin-left: 2px;">since
+                yesterday</span></span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--info-light); color: var(--info);">🚶</div>
+            <div class="stat-value" id="metricTodayCheckins">156</div>
+            <div class="stat-label">Checked In Today</div>
+            <span class="stat-change up">▲ 45% <span
+                style="color: var(--text-tertiary); font-weight: normal; margin-left: 2px;">since 9 AM</span></span>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h2 style="font-size: var(--text-base);">Ticket Sales Volume (Past Week)</h2>
+            <div class="chart-body" id="salesBarChartContainer">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+          <div class="chart-card">
+            <h2 style="font-size: var(--text-base);">Sales Breakdown by Category</h2>
+            <div class="chart-body" id="categoryDonutChartContainer">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS ADMIN TAB -->
+      <div class="tab-content" data-tab-content="events">
+        <div class="dashboard-header">
+          <div>
+            <h1>Event Management</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Add, update, or cancel MUNs, workshops,
+              and youth leadership summits.</p>
+          </div>
+          <button class="btn btn-primary" id="createNewEventBtn">➕ Create Event</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Event Details</th>
+                <th>Category</th>
+                <th>Venue / City</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminEventsTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DELEGATE APPROVALS TAB -->
+      <div class="tab-content" data-tab-content="approvals">
+        <div class="dashboard-header">
+          <div>
+            <h1>Delegate Registration Approvals</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Verify qualifications, process waivers,
+              and approve conference portfolios.</p>
+          </div>
+          <div class="flex gap-2">
+            <button class="btn btn-success btn-sm" id="bulkApproveBtn">Bulk Approve Selected</button>
+            <button class="btn btn-secondary btn-sm" id="exportDelegatesBtn">Export List (CSV)</button>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 40px;"><input type="checkbox" id="selectAllApprovals"></th>
+                <th>Delegate Details</th>
+                <th>Event Target</th>
+                <th>Date Applied</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminApprovalsTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- COMMITTEES TAB -->
+      <div class="tab-content" data-tab-content="committees">
+        <div class="dashboard-header">
+          <div>
+            <h1>Committee & Portfolio Allocations</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">View country allocation levels and
+              real-time status details.</p>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Committee Info</th>
+                <th>Agenda Topic</th>
+                <th>Difficulty</th>
+                <th>Delegate Limit</th>
+                <th>Executive Board</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminCommitteesTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TRANSACTIONS TAB -->
+      <div class="tab-content" data-tab-content="transactions">
+        <div class="dashboard-header">
+          <div>
+            <h1>Financial Transaction Ledger</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Comprehensive tracker for checkout
+              payments, refunds, and failures.</p>
+          </div>
+          <button class="btn btn-secondary btn-sm"
+            onclick="Toast.show('Export Complete', 'Transaction database CSV downloaded.', 'success')">💾 Export
+            Ledger</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Delegate</th>
+                <th>Target Event</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="adminTransactionsTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SCANNER ENTRY SIMULATOR TAB -->
+      <div class="tab-content" data-tab-content="scanner">
+        <div class="dashboard-header">
+          <div>
+            <h1>QR entry scanning portal</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Verify ticketing passes, check
+              qualifications, and scan entry codes.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2 gap-8">
+          <!-- Scanner Camera Box -->
+          <div class="card text-center">
+            <h3>QR Pass Reader (Simulator)</h3>
+            <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-bottom: var(--space-4);">Camera
+              feed simulation. Input a code manually below to scan.</p>
+
+            <div class="scanner-viewport-simulator">
+              <div class="scanner-laser-line"></div>
+              <div class="scanner-corner scanner-corner-tl"></div>
+              <div class="scanner-corner scanner-corner-tr"></div>
+              <div class="scanner-corner scanner-corner-bl"></div>
+              <div class="scanner-corner scanner-corner-br"></div>
+            </div>
+
+            <div class="form-group" style="max-width: 320px; margin: 0 auto;">
+              <input type="text" class="form-input" id="manualScanInput"
+                placeholder="Enter ticket passcode manually (e.g. TKT-2026-001)">
+              <button class="btn btn-primary" id="manualScanBtn" style="margin-top: 12px; width: 100%;">Verify
+                Pass</button>
+            </div>
+          </div>
+
+          <!-- Scanner History Logs -->
+          <div class="card">
+            <h3>Scanning History Log</h3>
+            <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-bottom: var(--space-4);">Real-time
+              check-in notifications stream.</p>
+
+            <div class="scan-history-log" id="scanHistoryLogContainer">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- CREATE EVENT MODAL -->
+  <div class="modal-backdrop" id="createEventModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Create New Event</h3>
+        <button class="modal-close">✕</button>
+      </div>
+      <form id="createEventForm" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <label class="form-label">Event Title</label>
+          <input type="text" class="form-input" id="adminEventTitle" required>
+        </div>
+        <div class="grid grid-2 gap-4">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="adminEventCategory">
+              <option value="Summit">Summit</option>
+              <option value="MUN">Model United Nations</option>
+              <option value="Workshop">Workshop</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Base Ticket Price (₹)</label>
+            <input type="number" class="form-input" id="adminEventPrice" required>
+          </div>
+        </div>
+        <div class="grid grid-2 gap-4">
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <input type="text" class="form-input" id="adminEventCity" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-input" id="adminEventDate" required>
+          </div>
+        </div>
+        <div class="flex justify-end gap-3" style="margin-top: var(--space-4);">
+          <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveNewEventBtn">Publish Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

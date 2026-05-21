@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard — SHL Ticketing System</title>
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon">SHL</div>
+        <span>Social House Learning</span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="committee.html" class="navbar-link">MUN</a>
+        <a href="dashboard.html" class="navbar-link active">Dashboard</a>
+        <a href="index.html#contact" class="navbar-link">Contact</a>
+      </div>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <button class="btn btn-secondary btn-sm" id="logoutBtn">Log Out</button>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ======== DASHBOARD LAYOUT ======== -->
+  <div class="dashboard-layout" style="margin-top: var(--navbar-height);">
+    
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar">
+      <div class="user-profile-summary">
+        <div class="avatar avatar-placeholder" id="userSidebarAvatar">AP</div>
+        <div class="user-profile-details">
+          <h3 id="userSidebarName">Aarav Patel</h3>
+          <span id="userSidebarRole">Delegate</span>
+        </div>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 4px;">
+        <button class="sidebar-link active" data-dashboard-tab="overview">
+          <span class="link-icon">📊</span> Overview
+        </button>
+        <button class="sidebar-link" data-dashboard-tab="tickets">
+          <span class="link-icon">🎫</span> My Tickets
+        </button>
+        <button class="sidebar-link" data-dashboard-tab="committee">
+          <span class="link-icon">⚖️</span> Committee Info
+        </button>
+        <button class="sidebar-link" data-dashboard-tab="payments">
+          <span class="link-icon">💳</span> Payments
+        </button>
+        <button class="sidebar-link" data-dashboard-tab="settings">
+          <span class="link-icon">⚙️</span> Settings
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN PANELS -->
+    <main class="dashboard-main">
+      
+      <!-- OVERVIEW PANEL -->
+      <div class="tab-content active" data-tab-content="overview">
+        <div class="dashboard-header">
+          <div>
+            <h1 id="welcomeTitle">Welcome Back, Aarav!</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Manage your tickets, check committee details, and explore updates.</p>
+          </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="grid grid-3 gap-6" style="margin-bottom: var(--space-8);">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">🎫</div>
+            <div class="stat-value" id="statsTicketsCount">2</div>
+            <div class="stat-label">Active Passes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--success-light); color: var(--success);">🏆</div>
+            <div class="stat-value" id="statsEventsCount">1</div>
+            <div class="stat-label">Conferences Attended</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background: var(--info-light); color: var(--info);">⚖️</div>
+            <div class="stat-value" id="statsCommitteesCount">2</div>
+            <div class="stat-label">Allocated Committees</div>
+          </div>
+        </div>
+
+        <div class="grid grid-2 gap-8">
+          <!-- Recent Notifications -->
+          <div class="card">
+            <h2 style="font-size: var(--text-base); margin-bottom: var(--space-4);">Latest Notifications</h2>
+            <div id="notificationsList" style="display: flex; flex-direction: column;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Quick Event Card -->
+          <div class="card card-gradient">
+            <h2 style="font-size: var(--text-base); margin-bottom: var(--space-4);">Next Event Highlight</h2>
+            <div id="nextEventHighlight">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY TICKETS PANEL -->
+      <div class="tab-content" data-tab-content="tickets">
+        <div class="dashboard-header">
+          <div>
+            <h1>My Registered Tickets</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">View event credentials, generate entry passes, or manage options.</p>
+          </div>
+        </div>
+
+        <div class="tickets-grid" id="dashboardTicketsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- COMMITTEE INFO PANEL -->
+      <div class="tab-content" data-tab-content="committee">
+        <div class="dashboard-header">
+          <div>
+            <h1>Committee Allocation & Details</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Access your designated MUN portfolio, topics, and download guides.</p>
+          </div>
+        </div>
+
+        <div id="dashboardCommitteeList" style="display: flex; flex-direction: column; gap: var(--space-6);">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- PAYMENTS PANEL -->
+      <div class="tab-content" data-tab-content="payments">
+        <div class="dashboard-header">
+          <div>
+            <h1>Payment History & Invoices</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">View transactional records, receipts, and order statuses.</p>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Invoice ID</th>
+                <th>Date</th>
+                <th>Event / Item</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Invoice</th>
+              </tr>
+            </thead>
+            <tbody id="paymentsTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SETTINGS PANEL -->
+      <div class="tab-content" data-tab-content="settings">
+        <div class="dashboard-header">
+          <div>
+            <h1>Profile Settings</h1>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Manage personal credentials, institution links, and emergency preferences.</p>
+          </div>
+        </div>
+
+        <div class="card" style="max-width: 680px;">
+          <form id="profileSettingsForm" onsubmit="event.preventDefault();">
+            <div class="grid grid-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" id="profileName" value="">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" id="profileEmail" value="" disabled>
+                <span class="form-hint">Email cannot be changed contact support.</span>
+              </div>
+            </div>
+            
+            <div class="grid grid-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" id="profilePhone" value="">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Institution</label>
+                <input type="text" class="form-input" id="profileInstitution" value="">
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-4);">
+              <button type="submit" class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- QR PASS VIEW MODAL -->
+  <div class="modal-backdrop" id="qrTicketModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="qrModalEventTitle">Entry Pass</h3>
+        <button class="modal-close">✕</button>
+      </div>
+      <div class="qr-modal-body">
+        <img src="" alt="QR Code" class="qr-code-img" id="qrModalImage">
+        <div>
+          <h4 id="qrModalTicketId" style="font-size: var(--text-base); margin-bottom: 2px;">TKT-CODE</h4>
+          <p id="qrModalDelegateName" style="font-size: var(--text-sm); color: var(--text-secondary);">Attendee Name</p>
+        </div>
+        
+        <div class="card card-gradient" style="width: 100%; text-align: left; padding: var(--space-4); margin-top: var(--space-2);">
+          <div style="font-size: var(--text-xs); margin-bottom: 2px;">🛡️ Allocations:</div>
+          <div id="qrModalAllocations" style="font-size: var(--text-sm); font-weight: 700; color: var(--primary);">UNSC - India</div>
+        </div>
+
+        <button class="btn btn-success" id="downloadQrPassBtn" style="width: 100%; margin-top: var(--space-2);">📥 Download Offline Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

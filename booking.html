@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Tickets — SHL Ticketing System</title>
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon">SHL</div>
+        <span>Social House Learning</span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="committee.html" class="navbar-link">MUN</a>
+        <a href="dashboard.html" class="navbar-link">Dashboard</a>
+        <a href="index.html#contact" class="navbar-link">Contact</a>
+      </div>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm" id="userBadge" style="display: none;">My Profile</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">🏠 Home</a>
+    <a href="events.html">📅 Events</a>
+    <a href="committee.html">🌍 MUN Committees</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+  </div>
+
+  <!-- ======== BOOKING SECTION ======== -->
+  <main class="container booking-page">
+    <div class="booking-layout">
+      <!-- MAIN BOOKING PANEL -->
+      <section class="booking-card reveal">
+        <!-- Progress Steps -->
+        <div class="step-progress-wrapper">
+          <div class="step-progress">
+            <div class="step-item active" id="stepIndicator1">
+              <div class="step-circle">1</div>
+              <span class="step-label">Tickets</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator2">
+              <div class="step-circle">2</div>
+              <span class="step-label">Delegate Info</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator3">
+              <div class="step-circle">3</div>
+              <span class="step-label">Add-ons</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator4">
+              <div class="step-circle">4</div>
+              <span class="step-label">Review</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Event Header -->
+        <div id="bookingEventHeader" style="margin-bottom: var(--space-8);">
+          <span class="badge badge-primary" id="eventHeaderCategory">Category</span>
+          <h1 id="eventHeaderTitle" style="font-size: var(--text-2xl); margin-top: var(--space-2);">Event Title</h1>
+          <div class="flex items-center gap-4" style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-1);">
+            <span id="eventHeaderDate">📅 Date</span>
+            <span id="eventHeaderLocation">📍 Venue</span>
+          </div>
+        </div>
+
+        <form id="bookingForm" onsubmit="event.preventDefault();">
+          
+          <!-- STEP 1: SELECT TICKET -->
+          <div class="tab-content active" data-tab-content="step1">
+            <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-4);">Select Ticket Category</h2>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-6);">Choose the perfect ticket category for your goals. Group registrations receive a 20% discount.</p>
+            
+            <div class="ticket-options-grid" id="ticketOptionsContainer">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- STEP 2: DELEGATE DETAILS -->
+          <div class="tab-content" data-tab-content="step2">
+            <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-4);">Delegate Personal Details</h2>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-6);">Please fill in accurate details. Certificates and credentials will use this information.</p>
+            
+            <div class="grid grid-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Full Name <span class="required">*</span></label>
+                <input type="text" class="form-input" id="delegateName" placeholder="Enter full name" required>
+                <span class="form-error" style="display: none;">Name is required</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" class="form-input" id="delegateEmail" placeholder="Enter email address" required>
+                <span class="form-error" style="display: none;">Valid email is required</span>
+              </div>
+            </div>
+
+            <div class="grid grid-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" class="form-input" id="delegatePhone" placeholder="Enter mobile number" required>
+                <span class="form-error" style="display: none;">Valid phone is required</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Institution / Organization <span class="required">*</span></label>
+                <input type="text" class="form-input" id="delegateInstitution" placeholder="School, College or Company" required>
+                <span class="form-error" style="display: none;">Institution is required</span>
+              </div>
+            </div>
+
+            <div class="grid grid-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">MUN Experience Level</label>
+                <select class="form-select" id="delegateExperience">
+                  <option value="beginner">Beginner (0-2 Conferences)</option>
+                  <option value="intermediate">Intermediate (3-6 Conferences)</option>
+                  <option value="advanced">Advanced (7+ Conferences)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dietary Preferences</label>
+                <select class="form-select" id="delegateDiet">
+                  <option value="veg">Vegetarian</option>
+                  <option value="non-veg">Non-Vegetarian</option>
+                  <option value="vegan">Vegan</option>
+                  <option value="jain">Jain Diet</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Special Requests / Accommodations</label>
+              <textarea class="form-textarea" id="delegateSpecialRequests" placeholder="Tell us if you have any special requirements, allergies, or questions..."></textarea>
+            </div>
+          </div>
+
+          <!-- STEP 3: ADD-ONS -->
+          <div class="tab-content" data-tab-content="step3">
+            <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-4);">Enhance Your Experience</h2>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-6);">Select premium add-ons to customize your summit experience.</p>
+            
+            <div class="addons-grid" id="addonsContainer">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- STEP 4: REVIEW & CONFIRM -->
+          <div class="tab-content" data-tab-content="step4">
+            <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-4);">Review Registration Summary</h2>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-6);">Please double-check all information before proceeding to payment.</p>
+            
+            <div class="card card-gradient" style="margin-bottom: var(--space-6);">
+              <h3 style="font-size: var(--text-base); margin-bottom: var(--space-4); border-bottom: 1px solid var(--border-light); padding-bottom: var(--space-2);">Delegate Information</h3>
+              <div class="grid grid-2 gap-4" style="font-size: var(--text-sm);">
+                <div><strong>Name:</strong> <span id="reviewName">-</span></div>
+                <div><strong>Email:</strong> <span id="reviewEmail">-</span></div>
+                <div><strong>Phone:</strong> <span id="reviewPhone">-</span></div>
+                <div><strong>Institution:</strong> <span id="reviewInstitution">-</span></div>
+                <div><strong>Experience:</strong> <span id="reviewExperience">-</span></div>
+                <div><strong>Dietary:</strong> <span id="reviewDiet">-</span></div>
+              </div>
+            </div>
+
+            <div class="card card-gradient" style="margin-bottom: var(--space-6);">
+              <h3 style="font-size: var(--text-base); margin-bottom: var(--space-4); border-bottom: 1px solid var(--border-light); padding-bottom: var(--space-2);">Order Selections</h3>
+              <div id="reviewOrderDetails" style="font-size: var(--text-sm);">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <label class="form-check" style="align-items: flex-start; margin-bottom: var(--space-4);">
+              <input type="checkbox" id="termsCheckbox" required style="margin-top: 4px;">
+              <span>I confirm that the delegate details provided are correct and I agree to the <a href="https://www.socialhouselearning.com/terms-of-use" target="_blank" style="color: var(--primary); font-weight: 600;">Terms & Conditions</a> and <a href="https://www.socialhouselearning.com/refund-policy" target="_blank" style="color: var(--primary); font-weight: 600;">Refund Policy</a> of Social House Learning.</span>
+            </label>
+          </div>
+
+          <!-- NAVIGATION BUTTONS -->
+          <div class="booking-nav-buttons">
+            <button type="button" class="btn btn-secondary" id="prevBtn" style="visibility: hidden;">Back</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ORDER SUMMARY SIDEBAR -->
+      <aside class="order-summary-card reveal">
+        <h2>Order Summary</h2>
+        <div id="summaryEmptyState">
+          <p style="font-size: var(--text-sm); text-align: center; color: var(--text-tertiary);">No ticket selected yet.</p>
+        </div>
+        <div id="summaryDetails" class="hidden">
+          <div class="summary-row">
+            <span id="summaryTicketType" class="summary-ticket-badge">Tier</span>
+            <span id="summaryTicketPrice">₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Quantity:</span>
+            <span id="summaryTicketQty">0</span>
+          </div>
+          
+          <!-- Dynamic Add-ons List -->
+          <div id="summaryAddonsList" style="border-top: 1px solid var(--border-light); margin-top: var(--space-3); padding-top: var(--space-3);">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="summary-row total">
+            <span>Total Payable:</span>
+            <span id="summaryTotalPrice">₹0</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer" style="margin-top: var(--space-20);">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>©2021 – 2026 Social House Learning & SMHM Services LLP. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

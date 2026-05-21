@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Checkout — SHL Ticketing System</title>
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/payment.css">
+</head>
+<body>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon">SHL</div>
+        <span>Social House Learning</span>
+      </a>
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="events.html" class="navbar-link">Events</a>
+        <a href="dashboard.html" class="navbar-link">Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======== MAIN CHECKOUT CONTENT ======== -->
+  <main class="container payment-page" id="paymentPageMain">
+    <div class="payment-layout" id="checkoutLayout">
+      <!-- CHECKOUT CONTROL PANEL -->
+      <section class="payment-card reveal">
+        <h1 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Choose Payment Method</h1>
+        <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-6);">All transactions are secured with 256-bit encryption.</p>
+
+        <!-- Method Tabs -->
+        <div class="payment-methods-tabs">
+          <button class="payment-method-btn active" data-method="card">
+            <span class="payment-method-icon">💳</span>
+            <span class="payment-method-label">Credit / Debit Card</span>
+          </button>
+          <button class="payment-method-btn" data-method="upi">
+            <span class="payment-method-icon">📲</span>
+            <span class="payment-method-label">UPI / QR Scan</span>
+          </button>
+          <button class="payment-method-btn" data-method="netbanking">
+            <span class="payment-method-icon">🏛️</span>
+            <span class="payment-method-label">Net Banking</span>
+          </button>
+        </div>
+
+        <!-- Forms Container -->
+        <form id="paymentForm" onsubmit="event.preventDefault();">
+          
+          <!-- CARD FORM -->
+          <div class="tab-content active" data-tab-content="card">
+            <div class="form-group">
+              <label class="form-label">Name on Card</label>
+              <input type="text" class="form-input" id="cardName" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card Number</label>
+              <input type="text" class="form-input" id="cardNumber" placeholder="4111 2222 3333 4444" maxlength="19">
+            </div>
+            <div class="grid grid-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Expiry Date</label>
+                <input type="text" class="form-input" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label class="form-label">CVV</label>
+                <input type="password" class="form-input" id="cardCvv" placeholder="•••" maxlength="3">
+              </div>
+            </div>
+          </div>
+
+          <!-- UPI FORM -->
+          <div class="tab-content" data-tab-content="upi">
+            <div class="form-group">
+              <label class="form-label">Enter UPI ID / VPA</label>
+              <input type="text" class="form-input" id="upiId" placeholder="name@upi">
+              <span class="form-hint">E.g., mobile-number@paytm, name@okhdfcbank</span>
+            </div>
+            <div class="divider">or scan code</div>
+            <div class="text-center" style="padding: var(--space-4);">
+              <img src="" alt="UPI QR" id="upiSimulatedQr" style="width: 140px; height: 140px; margin: 0 auto 12px; border: 1.5px solid var(--border-light); border-radius: var(--radius-md); padding: 8px;">
+              <p style="font-size: var(--text-xs); color: var(--text-secondary);">Scan this QR using PhonePe, GPay, Paytm or BHIM app to pay.</p>
+            </div>
+          </div>
+
+          <!-- NET BANKING FORM -->
+          <div class="tab-content" data-tab-content="netbanking">
+            <div class="form-group">
+              <label class="form-label">Select Your Bank</label>
+              <select class="form-select" id="bankSelect">
+                <option value="">-- Choose Bank --</option>
+                <option value="hdfc">HDFC Bank</option>
+                <option value="sbi">State Bank of India</option>
+                <option value="icici">ICICI Bank</option>
+                <option value="axis">Axis Bank</option>
+                <option value="kotak">Kotak Mahindra Bank</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Sandbox Payment Toggles (For testing) -->
+          <div class="flex gap-4" style="margin-top: var(--space-6); background: var(--bg-secondary); padding: var(--space-3); border-radius: var(--radius-md);">
+            <span style="font-size: var(--text-xs); font-weight: 700; color: var(--text-tertiary);">SANDBOX OPTION:</span>
+            <label class="form-check">
+              <input type="radio" name="sandboxStatus" value="success" checked>
+              <span style="font-size: var(--text-xs);">Force Success</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="sandboxStatus" value="failed">
+              <span style="font-size: var(--text-xs);">Force Failure</span>
+            </label>
+          </div>
+
+          <!-- Pay Button -->
+          <button type="submit" class="btn btn-primary btn-lg" id="submitPaymentBtn" style="width: 100%; margin-top: var(--space-6);">Pay Now</button>
+        </form>
+      </section>
+
+      <!-- CHECKOUT SIDEBAR SUMMARY -->
+      <aside class="payment-card reveal">
+        <h2 style="font-size: var(--text-lg); margin-bottom: var(--space-4);">Order Selections</h2>
+        <div id="paymentSummaryEvent">
+          <h3 id="paymentSummaryEventTitle" style="font-size: var(--text-base); font-weight: 700; margin-bottom: 2px;">Event Title</h3>
+          <p id="paymentSummaryEventLocation" style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: var(--space-4);">📍 Venue details</p>
+        </div>
+
+        <div style="border-top: 1px solid var(--border-light); padding-top: var(--space-4);">
+          <div class="summary-row">
+            <span id="paymentSummaryTicketType">VIP Pass</span>
+            <span id="paymentSummaryTicketPrice">₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Quantity:</span>
+            <span id="paymentSummaryTicketQty">0</span>
+          </div>
+          <div id="paymentSummaryAddonsList">
+            <!-- Addons populated dynamically -->
+          </div>
+          <div class="summary-row total" style="border-top: 1px dashed var(--border-medium); padding-top: var(--space-4); margin-top: var(--space-4); font-size: var(--text-lg); font-weight: 800; color: var(--text-primary);">
+            <span>Total Payable:</span>
+            <span id="paymentSummaryTotalPrice">₹0</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- RESPONSE CONTAINER -->
+    <div id="responseContainer" class="hidden">
+      <!-- Generated Dynamically on response (Success / Failed) -->
+    </div>
+  </main>
+
+  <!-- PROCESSING MODAL OVERLAY -->
+  <div class="processing-overlay" id="processingOverlay">
+    <div class="processing-spinner"></div>
+    <h3>Processing Payment</h3>
+    <p>Please do not refresh this page or click back...</p>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+</html>

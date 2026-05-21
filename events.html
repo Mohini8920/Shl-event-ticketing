@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Events — SHL Ticketing System</title>
+  <meta name="description" content="Browse upcoming summits, MUNs, public speaking workshops and other leadership events by Social House Learning.">
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/events.css">
+</head>
+<body>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon">SHL</div>
+        <span>Social House Learning</span>
+      </a>
+
+      <div class="navbar-links">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="events.html" class="navbar-link active">Events</a>
+        <a href="committee.html" class="navbar-link">MUN</a>
+        <a href="dashboard.html" class="navbar-link">Dashboard</a>
+        <a href="index.html#contact" class="navbar-link">Contact</a>
+      </div>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <a href="login.html" class="btn btn-ghost btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">🏠 Home</a>
+    <a href="events.html">📅 Events</a>
+    <a href="committee.html">🌍 MUN Committees</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="index.html#contact">📞 Contact</a>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+      <a href="login.html" class="btn btn-secondary" style="text-align: center;">Log In</a>
+      <a href="register.html" class="btn btn-primary" style="text-align: center;">Register Now</a>
+    </div>
+  </div>
+
+  <!-- ======== EVENTS SECTION ======== -->
+  <main class="container events-page">
+    <header class="events-header reveal">
+      <h1>Explore Upcoming Events</h1>
+      <p>Filter, search, and register for elite youth leadership summits and MUNs.</p>
+    </header>
+
+    <div class="events-layout">
+      <!-- FILTERS SIDEBAR -->
+      <aside class="filters-sidebar" id="filtersSidebar">
+        <div class="filters-header">
+          <h2>Filters</h2>
+          <button class="btn btn-ghost btn-sm" id="clearFiltersBtn" style="font-size: var(--text-xs); color: var(--primary);">Clear All</button>
+        </div>
+
+        <!-- Category -->
+        <div class="filter-section">
+          <h3 class="filter-section-title">Category</h3>
+          <div class="filter-options">
+            <label class="form-check">
+              <input type="checkbox" name="category" value="Summit">
+              <span>Summits</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="category" value="MUN">
+              <span>Model United Nations</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="category" value="Workshop">
+              <span>Workshops & Bootcamps</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Location / City -->
+        <div class="filter-section">
+          <h3 class="filter-section-title">Location</h3>
+          <div class="filter-options">
+            <label class="form-check">
+              <input type="checkbox" name="city" value="New Delhi">
+              <span>New Delhi</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="city" value="Dubai">
+              <span>Dubai</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="city" value="Singapore">
+              <span>Singapore</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range -->
+        <div class="filter-section">
+          <h3 class="filter-section-title">Ticket Price</h3>
+          <div class="filter-options">
+            <label class="form-check">
+              <input type="radio" name="price" value="any" checked>
+              <span>Any Price</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="price" value="under-1000">
+              <span>Under ₹1,000</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="price" value="1000-3000">
+              <span>₹1,000 – ₹3,000</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="price" value="above-3000">
+              <span>Above ₹3,000</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Close button for mobile -->
+        <button class="btn btn-primary" id="closeFiltersBtn" style="width: 100%; margin-top: var(--space-4); display: none;">Apply Filters</button>
+      </aside>
+
+      <!-- EVENTS MAIN -->
+      <div class="events-main">
+        <!-- Search & Control -->
+        <div class="events-search-bar reveal">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search by event name, tags, or location...">
+          </div>
+          <button class="btn btn-secondary mobile-filters-trigger" id="mobileFiltersTrigger">
+            <span>⚙️</span> Filters
+          </button>
+        </div>
+
+        <!-- Result count & sorting -->
+        <div class="flex items-center justify-between reveal">
+          <div class="results-count" id="resultsCount">Loading events...</div>
+          <div class="flex items-center gap-2">
+            <span style="font-size: var(--text-xs); color: var(--text-tertiary); white-space: nowrap;">Sort By:</span>
+            <select class="form-select" id="sortSelect" style="width: auto; padding: var(--space-2) var(--space-8) var(--space-2) var(--space-3); font-size: var(--text-xs); margin-bottom: 0;">
+              <option value="date-asc">Date: Earliest First</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="spots-desc">Availability: Most Open</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="grid grid-2 gap-6 reveal" id="eventsGrid">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state hidden animate-scale-in" id="emptyState">
+          <div class="empty-icon">🎫</div>
+          <h3>No Events Found</h3>
+          <p>We couldn't find any events matching your selected filters. Try broadening your criteria or reset filters.</p>
+          <button class="btn btn-primary" id="resetAllBtn">Reset All Filters</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Filter Backdrop for Mobile -->
+  <div class="modal-backdrop" id="filtersBackdrop" style="z-index: calc(var(--z-modal) - 1);"></div>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer" style="margin-top: var(--space-20);">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>©2021 – 2026 Social House Learning & SMHM Services LLP. All Rights Reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="https://www.socialhouselearning.com/privacy-policy" target="_blank">Privacy Policy</a>
+          <a href="https://www.socialhouselearning.com/refund-policy" target="_blank">Refund Policy</a>
+          <a href="https://www.socialhouselearning.com/terms-of-use" target="_blank">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>
